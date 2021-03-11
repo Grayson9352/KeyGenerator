@@ -1,0 +1,12 @@
+{
+    "preset_1": {
+            "namespace_id": "a",
+            "key_id": "abc",
+            "native_id": "a"
+    },
+    "preset_2": {
+            "namespace_id": "",
+            "key_id": "",
+            "native_id": ""
+    }
+}
