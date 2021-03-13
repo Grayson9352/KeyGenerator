@@ -46,7 +46,7 @@ if preset.lower() == "yes":
         else:
             print("That directory is invalid!")
 else:
-    npqr = input("Is there any namespace? Keep empty if none: ")
+    npqr = input("Is there any namespaces Keep empty if none: ")
     keyqr = input("Key: ")
     nativeqr = input("Native: ")
     newStrqr = input("NewText: ")
