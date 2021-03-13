@@ -1,7 +1,10 @@
-import json
+import json # i dont think u have to install this
 import os
-import pyperclip
+import pyperclip # pip install pyperclip
+from googletrans import Translator, constants # pip3 install googletrans==3.1.0a0
+from pprint import pprint # pip3 install googletrans==3.1.0a0
 
+translator = Translator()
 preset = input("Please type yes for presets no for no preset: ")
 if preset.lower() == "yes":
     dirOrsame = input("Please type yes for current directory or type the directory for custom directory: ")
@@ -51,7 +54,7 @@ else:
     key = "\"" + keyqr + "\""
     native = "\"" + nativeqr + "\""
     newStr = "\"" + newStrqr + "\""
-    result = "+TextReplacements=(Category=Game, bIsMinimalPatch=True, Namespace=" + np +", Key=" + key + ", NativeString=" + native + ", LocalizedStrings=((\"ar\", " + newStr + "),(\"en\", " + newStr + "),(\"de\", " + newStr + "),(\"es\", " + newStr + "),(\"es-419\", " + newStr + "),(\"fr\", " + newStr + "),(\"it\", " + newStr + "),(\"ja\", " + newStr + "),(\"ko\", " + newStr + "),(\"pl\", " + newStr + "),(\"pt-BR\", " + newStr + "),(\"ru\", " + newStr + "),(\"tr\", " + newStr + "),(\"zh-CN\""", " + newStr + "),(\"zh-Hant\", " + newStr + ")))"
+    result = "+TextReplacements=(Category=Game, bIsMinimalPatch=True, Namespace=" + np +", Key=" + key + ", NativeString=" + native + ", LocalizedStrings=((\"ar\", " + translator.translate(newStr, dest="ar").text + "),(\"en\", " + translator.translate(newStr, dest="en").text + "),(\"de\", " + translator.translate(newStr, dest="de").text + "),(\"es\", " + translator.translate(newStr, dest="es").text + "),(\"es-419\", " + translator.translate(newStr, dest="es").text + "),(\"fr\", " + translator.translate(newStr, dest="fr").text + "),(\"it\", " + translator.translate(newStr, dest="it").text + "),(\"ja\", " + translator.translate(newStr, dest="ja").text + "),(\"ko\", " + translator.translate(newStr, dest="ko").text + "),(\"pl\", " + translator.translate(newStr, dest="pl").text + "),(\"pt-BR\", " + translator.translate(newStr, dest="pt").text + "),(\"ru\", " + translator.translate(newStr, dest="ru").text + "),(\"tr\", " + translator.translate(newStr, dest="tr").text + "),(\"zh-CN\""", " + translator.translate("Hello", dest="zh-CN").text + "),(\"zh-Hant\", " + translator.translate("Hello", dest="zh-CN").text + ")))"
     print(result)
     print("Copied the result!")
     pyperclip.copy(result)
