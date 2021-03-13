@@ -1,0 +1,47 @@
+{
+    "CreativeDesc": {
+        "namespace_id": "",
+        "key_id": "0179EEFF4A92205412AAD2B865E7EBA1",
+        "native_id": "Your Islands. Your Friends. Your Rules."
+    },
+    "BRDesc": {
+        "namespace_id": "",
+        "key_id": "98651ED94EBC14BE17236B840E36835D",
+        "native_id": "100 Player PvP"
+    },
+    "STWDesc": {
+        "namespace_id": "",
+        "key_id": "1D7ECFB2484DDDA937DCD3BC6E01102D",
+        "native_id": "Cooperative PvE adventure!"
+    },
+    "LoggingIn": {
+        "namespace_id": "FortLoginStatus",
+        "key_id": "LoggingIn",
+        "native_id": "Logging In..."
+    },
+    "PlayTab": {
+        "namespace_id": "",
+        "key_id": "37020CCD402F073607D9D4A9561EF035",
+        "native_id": "PLAY"
+    },
+    "CompeteTab": {
+        "namespace_id": "",
+        "key_id": "B23FE08A441B1056FCA89484FDF7FE89",
+        "native_id": "COMPETE"
+    },
+    "ShopTab": {
+        "namespace_id": "",
+        "key_id": "40D1ADD648EDBD000A8F7E88E8D90341",
+        "native_id": "ITEM SHOP"
+    },
+    "NoFillStr": {
+        "namespace_id": "Fortnite.FortMatchmakingContext",
+        "key_id": "FortMatchmakingContext_DontFill",
+        "native_id": "DON'T FILL"
+    },
+    "PlayBtn": {
+        "namespace_id": "",
+        "key_id": "F6FDE358474B04C11BE555A64654917D",
+        "native_id": "PLAY!"
+    }
+}
