@@ -1,24 +1,40 @@
 import json # i dont think u have to install this
 import os
-import pyperclip # pip install pyperclip
-from googletrans import Translator, constants # pip3 install googletrans==3.1.0a0
-# from pprint import pprint # pip3 install googletrans==3.1.0a0
+try:
+    import pyperclip
+except ModuleNotFoundError:
+    print("You have to install pyperclip!") # pip install pyperclip
+try:
+    from googletrans import Translator, constants
+except ModuleNotFoundError:
+    print("You have to install googletrans!") # pip3 install googletrans==3.1.0a0
 
 #
 # TRANSLATING IS NOT ALWAYS WORKING
 #
 
-
-def getLang(lang, trans, stra):
-    try:
-        lang = trans.translate(stra, dest=lang)
-    except AttributeError:
+debug = False
+def getLang(lang, trans, stra, srcLang=False):
+    if debug == False:
+        try:
+          lang = trans.translate(stra, dest=lang)
+        except AttributeError:
             print("""
             PLEASE UNINSTALL GOOGLETRANS AND PUT THIS CMD IN
             pip3 install googletrans==3.1.0a0
             """)
-    except:
-            print("Idrk")
+        except:
+            print("You have encountered a unexpected error!")
+    else:
+        try:
+            lang = trans.translate(stra, dest=lang, src=srcLang)
+        except AttributeError: 
+            print("""
+            PLEASE UNINSTALL GOOGLETRANS AND PUT THIS CMD IN
+            pip3 install googletrans==3.1.0a0
+            """)
+        except:
+            print("You have encountered a unexpected error!")      
     return lang.text
 
 def main():
@@ -29,9 +45,7 @@ def main():
         if dirOrsame.lower() == "yes":
             fileLoc = input("Please type the preset file name: ")
             realLoc = "" + os.path.dirname(os.path.realpath(__file__)) + "\\" + fileLoc
-            #currentDir = os.path.dirname(os.path.realpath(__file__))
             realDir = os.path.isfile("" + os.path.dirname(os.path.realpath(__file__)) + "\\" + fileLoc)
-            #print(realDir)
             if realDir == True:
                 print("")
                 data = json.loads(open(realLoc).read())
@@ -49,7 +63,6 @@ def main():
                 print("That directory is invalid!")
                 main()
         else:
-            # fileLoc = input("Please type the preset file name: ")
             realDir = os.path.isfile(dirOrsame)
             if realDir == True:
                 print("")
@@ -77,22 +90,25 @@ def main():
         keyqr = input("Key: ")
         nativeqr = input("Native: ")
         newStrqr = input("NewText: ")
+        if debug == False:
+            pass
+        else:
+            srcPickqr = input("Please select your source")
+            srcPick = "\"" + srcPickqr + "\""
         np = "\"" + npqr + "\""
         key = "\"" + keyqr + "\""
         native = "\"" + nativeqr + "\""
         newStr = "\"" + newStrqr + "\""
-        result = f"+TextReplacements=(Category=Game, bIsMinimalPatch=True, Namespace=" + np +", Key=" + key + ", NativeString=" + native + ", LocalizedStrings=((\"ar\", " + getLang("ar", translator, newStr) + "),(\"en\", " + getLang("en", translator, newStr) + "),(\"de\", " + getLang("de", translator, newStr) + "),(\"es\", " + getLang("es", translator, newStr) + "),(\"es-419\", " + getLang("es", translator, newStr) + "),(\"fr\", " + getLang("fr", translator, newStr) + "),(\"it\", " + getLang("it", translator, newStr) + "),(\"ja\", " + getLang("ja", translator, newStr) + "),(\"ko\", " + getLang("ko", translator, newStr) + "),(\"pl\", " + getLang("pl", translator, newStr) + "),(\"pt-BR\", " + getLang("pt", translator, newStr) + "),(\"ru\", " + getLang("ru", translator, newStr) + "),(\"tr\", " + getLang("tr", translator, newStr) + "),(\"zh-CN\""", " + getLang("zh-CN", translator, newStr) + "),(\"zh-Hant\", " + getLang("zh-CN", translator, newStr) + ")))"
+        if debug == False:
+            result = f"+TextReplacements=(Category=Game, bIsMinimalPatch=True, Namespace=" + np +", Key=" + key + ", NativeString=" + native + ", LocalizedStrings=((\"ar\", " + getLang("ar", translator, newStr) + "),(\"en\", " + getLang("en", translator, newStr) + "),(\"de\", " + getLang("de", translator, newStr) + "),(\"es\", " + getLang("es", translator, newStr) + "),(\"es-419\", " + getLang("es", translator, newStr) + "),(\"fr\", " + getLang("fr", translator, newStr) + "),(\"it\", " + getLang("it", translator, newStr) + "),(\"ja\", " + getLang("ja", translator, newStr) + "),(\"ko\", " + getLang("ko", translator, newStr) + "),(\"pl\", " + getLang("pl", translator, newStr) + "),(\"pt-BR\", " + getLang("pt", translator, newStr) + "),(\"ru\", " + getLang("ru", translator, newStr) + "),(\"tr\", " + getLang("tr", translator, newStr) + "),(\"zh-CN\""", " + getLang("zh-CN", translator, newStr) + "),(\"zh-Hant\", " + getLang("zh-CN", translator, newStr) + ")))"
+        else:
+            result = f"+TextReplacements=(Category=Game, bIsMinimalPatch=True, Namespace=" + np +", Key=" + key + ", NativeString=" + native + ", LocalizedStrings=((\"ar\", " + getLang("ar", translator, newStr, srcPick) + "),(\"en\", " + getLang("en", translator, newStr, srcPick) + "),(\"de\", " + getLang("de", translator, newStr, srcPick) + "),(\"es\", " + getLang("es", translator, newStr, srcPick) + "),(\"es-419\", " + getLang("es", translator, newStr, srcPick) + "),(\"fr\", " + getLang("fr", translator, newStr, srcPick) + "),(\"it\", " + getLang("it", translator, newStr, srcPick) + "),(\"ja\", " + getLang("ja", translator, newStr, srcPick) + "),(\"ko\", " + getLang("ko", translator, newStr, srcPick) + "),(\"pl\", " + getLang("pl", translator, newStr, srcPick) + "),(\"pt-BR\", " + getLang("pt", translator, newStr, srcPick) + "),(\"ru\", " + getLang("ru", translator, newStr, srcPick) + "),(\"tr\", " + getLang("tr", translator, newStr, srcPick) + "),(\"zh-CN\""", " + getLang("zh-CN", translator, newStr, srcPick) + "),(\"zh-Hant\", " + getLang("zh-CN", translator, newStr, srcPick) + ")))"           
+        print(result)
         try:
-            print(result)
-        except AttributeError:
-            print("Myaybe??")
+            print("Copied the result!")
+            pyperclip.copy(result)
         except:
-            print("Idrk")
-        #catch("AttributeError: 'NoneType' object has no attribute 'group'")
-
-       # print(result)
-        print("Copied the result!")
-        pyperclip.copy(result)
+            print("bruh")
         replay = input("Would you like to generate another one?: ")
         if replay.lower() == "yes":
             main()
