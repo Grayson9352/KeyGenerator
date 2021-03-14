@@ -10,7 +10,15 @@ from googletrans import Translator, constants # pip3 install googletrans==3.1.0a
 
 
 def getLang(lang, trans, stra):
-    lang = trans.translate(stra, dest=lang)
+    try:
+        lang = trans.translate(stra, dest=lang)
+    except AttributeError:
+            print("""
+            PLEASE UNINSTALL GOOGLETRANS AND PUT THIS CMD IN
+            pip3 install googletrans==3.1.0a0
+            """)
+    except:
+            print("Idrk")
     return lang.text
 
 def main():
@@ -20,11 +28,13 @@ def main():
         dirOrsame = input("Please type yes for current directory or type the directory for custom directory: ")
         if dirOrsame.lower() == "yes":
             fileLoc = input("Please type the preset file name: ")
-            currentDir = os.path.dirname(os.path.realpath(__file__))
-            realDir = os.path.isfile("" + currentDir + "\\" + fileLoc)
+            realLoc = "" + os.path.dirname(os.path.realpath(__file__)) + "\\" + fileLoc
+            #currentDir = os.path.dirname(os.path.realpath(__file__))
+            realDir = os.path.isfile("" + os.path.dirname(os.path.realpath(__file__)) + "\\" + fileLoc)
+            #print(realDir)
             if realDir == True:
                 print("")
-                data = json.loads(open(fileLoc).read())
+                data = json.loads(open(realLoc).read())
                 presetNameqr = input("What is the preset array name?: ")
                 keyId = "\"" + data[presetNameqr]['key_id'] + "\""
                 npId = "\"" + data[presetNameqr]['namespace_id'] + "\""
@@ -72,7 +82,15 @@ def main():
         native = "\"" + nativeqr + "\""
         newStr = "\"" + newStrqr + "\""
         result = f"+TextReplacements=(Category=Game, bIsMinimalPatch=True, Namespace=" + np +", Key=" + key + ", NativeString=" + native + ", LocalizedStrings=((\"ar\", " + getLang("ar", translator, newStr) + "),(\"en\", " + getLang("en", translator, newStr) + "),(\"de\", " + getLang("de", translator, newStr) + "),(\"es\", " + getLang("es", translator, newStr) + "),(\"es-419\", " + getLang("es", translator, newStr) + "),(\"fr\", " + getLang("fr", translator, newStr) + "),(\"it\", " + getLang("it", translator, newStr) + "),(\"ja\", " + getLang("ja", translator, newStr) + "),(\"ko\", " + getLang("ko", translator, newStr) + "),(\"pl\", " + getLang("pl", translator, newStr) + "),(\"pt-BR\", " + getLang("pt", translator, newStr) + "),(\"ru\", " + getLang("ru", translator, newStr) + "),(\"tr\", " + getLang("tr", translator, newStr) + "),(\"zh-CN\""", " + getLang("zh-CN", translator, newStr) + "),(\"zh-Hant\", " + getLang("zh-CN", translator, newStr) + ")))"
-        print(result)
+        try:
+            print(result)
+        except AttributeError:
+            print("Myaybe??")
+        except:
+            print("Idrk")
+        #catch("AttributeError: 'NoneType' object has no attribute 'group'")
+
+       # print(result)
         print("Copied the result!")
         pyperclip.copy(result)
         replay = input("Would you like to generate another one?: ")
