@@ -17,3 +17,6 @@ And finally the string that you want to replace it with
 Note:
 None of the keys, native, text, path, anything should have "" around it when you are inputting it.
 
+UPDATE:
+Major update coming soon when i feel like it
+
